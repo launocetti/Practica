@@ -1,0 +1,211 @@
+public class Ejecucion {
+
+	public static void main(String[] args) throws Exception  {
+		Producto<Alimento> prodAlimento = new Producto<Alimento>(6);
+		
+		Alimento a1 = new Alimento("Spaguetti", "Matarazzo");
+		Alimento a2 = new Alimento("Arroz", "Gallo");
+		Alimento a3 = new Alimento("Pure de Tomate", "La Campagnola");
+		Alimento a4 = new Alimento("Cacao", "Toddy");
+		Alimento a5 = new Alimento("Aceite", "Cocinero");
+		Alimento a6 = new Alimento("Azucar", "Ledesma");
+		
+		prodAlimento.addProd(a1);
+		prodAlimento.addProd(a2);
+		prodAlimento.addProd(a3);
+		prodAlimento.addProd(a4);
+		prodAlimento.addProd(a5);
+		prodAlimento.addProd(a6);
+		
+		for(Alimento alimento: prodAlimento.getLista()) {
+			System.out.println("Producto: " +  alimento.getNombreProducto() + " Marca: " + alimento.getMarca());
+		}
+		
+		Producto<Bazar> prodBazar = new Producto<Bazar>(4);
+		
+		Bazar b1 = new Bazar ("Cubiertos", "Tramontina", "elementos de cocina");
+		Bazar b2 = new Bazar ("Set de ollas", "Cuccina", "cacerolas");
+		Bazar b3 = new Bazar ("Set de tuppers", "Tupperware", "elementos de cocina");
+		Bazar b4 = new Bazar ("Servilleros", "Inox", "ordenadores de cocina");
+				
+		prodBazar.addProd(b1);
+		prodBazar.addProd(b2);
+		prodBazar.addProd(b3);
+		prodBazar.addProd(b4);
+		
+		for(Bazar bazar:prodBazar.getLista()) {
+			System.out.println("Producto: " +  bazar.getProducto() + " Marca: " + bazar.getMarca() + " Tipo: " + bazar.getTipo());
+		}
+		
+		Producto<Indumentaria> prodIndumentaria = new Producto<Indumentaria>(4);
+		
+		Indumentaria i1 = new Indumentaria ("Lee", "40", "Jeans");
+		Indumentaria i2 = new Indumentaria ("Levis", "Large", "Remeras");
+		Indumentaria i3 = new Indumentaria ("Vans", "38", "Buzos");
+		Indumentaria i4 = new Indumentaria ("Ossira", "42", "Sacon");
+		
+		prodIndumentaria.addProd(i1);
+		prodIndumentaria.addProd(i2);
+		prodIndumentaria.addProd(i3);
+		prodIndumentaria.addProd(i4);
+		
+		for(Indumentaria indumentaria:prodIndumentaria.getLista()) {
+			System.out.println("Marca: " +  indumentaria.getMarca() + " Talle: " + indumentaria.getTalle() + " Tipo: " + indumentaria.getTipo());
+		}
+
+	}
+
+}
+
+___________________
+
+
+public interface Proceso<T> {
+
+void addProd(T i1) throws Exception;
+
+}
+__________
+
+import java.util.ArrayList;
+
+public class Producto <T> implements Proceso {
+	private ArrayList<T> lista =  new ArrayList<T>();
+	private int tope;
+	
+	public Producto(int tope) {
+		super();
+		this.tope = tope;
+	}
+		public ArrayList<T> getLista() {
+		return lista;
+	}
+	public void setLista(ArrayList<T> lista) {
+		this.lista = lista;
+	}
+	public int getTope() {
+		return tope;
+	}
+	public void setTope(int tope) {
+		this.tope = tope;
+	}
+
+	//metodo para agregar objetos al arraylist
+	
+ 
+	@Override
+	public void addProd(Object i1) throws Exception {
+		if (lista.size()< tope) {
+			lista.add((T) i1);
+		} else {
+			throw new Exception ("Se supero el tope!");
+		}	
+		
+	}
+}
+
+______________________
+
+//Crear la clase Alimento con atributos nombreProducto, marca
+
+public class Alimento {
+	private String nombreProducto;
+	private String marca;
+	
+	
+	public Alimento(String nombreProducto, String marca) {
+		super();
+		this.nombreProducto = nombreProducto;
+		this.marca = marca;
+	}
+	
+	public String getNombreProducto() {
+		return nombreProducto;
+	}
+	public void setNombreProducto(String nombreProducto) {
+		this.nombreProducto = nombreProducto;
+	}
+	public String getMarca() {
+		return marca;
+	}
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+	
+}
+_____________________
+
+public class Bazar {
+	private String Producto;
+	private String Marca;
+	private String Tipo;
+	
+	public Bazar(String producto, String marca, String tipo) {
+		super();
+		Producto = producto;
+		Marca = marca;
+		Tipo = tipo;
+	}
+
+	public String getProducto() {
+		return Producto;
+	}
+
+	public void setProducto(String producto) {
+		Producto = producto;
+	}
+
+	public String getMarca() {
+		return Marca;
+	}
+
+	public void setMarca(String marca) {
+		Marca = marca;
+	}
+
+	public String getTipo() {
+		return Tipo;
+	}
+
+	public void setTipo(String tipo) {
+		Tipo = tipo;
+	}
+}
+
+_____________________
+
+//Crear la clase Indumentaria con atributos marca, talle, tipo
+
+public class Indumentaria {
+	private String marca;
+	private String talle;
+	private String tipo;
+	
+	
+	public Indumentaria(String marca, String talle, String tipo) {
+		super();
+		this.marca = marca;
+		this.talle = talle;
+		this.tipo = tipo;
+	}
+
+	public String getMarca() {
+		return marca;
+	}
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+	public String getTalle() {
+		return talle;
+	}
+	public void setTalle(String talle) {
+		this.talle = talle;
+	}
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+}
+
