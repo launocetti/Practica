@@ -1,0 +1,95 @@
+import java.util.ArrayList;
+
+public class Ejecucion {
+
+	public static void main(String[] args) {
+		ArrayList<String> codCanciones=new ArrayList<String>();
+		codCanciones.add("0205");
+		codCanciones.add("0312");
+		codCanciones.add("0607");
+		codCanciones.add("1238");
+		codCanciones.add("1528");
+		codCanciones.add("0548");
+		codCanciones.add(null);
+		
+		Fonola f = new Fonola();
+		
+		for (String codigo: codCanciones) {
+		    f.SetearCancion(codigo);
+		}
+	}
+
+}
+---------------------------------------------------
+public class Fonola {
+	private String codCancion; 
+	private GrillaDiscos grilla;
+
+	public Fonola() {
+		this.grilla=new GrillaDiscos();
+	}
+
+	public void SetearCancion(String codCancion) { 
+				try{
+			if(codCancion!=null) {
+				this.grilla.SetearUbicacion(codCancion); 
+				this.grilla.MostrarUbicacion();
+			}
+			else {
+   			 throw new Exception ("el codigo de la cancion no puede ser nulo");
+			}
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	//
+	public GrillaDiscos getGrilla() { 
+		return this.grilla;
+	}
+
+	public void setGrilla(GrillaDiscos grilla) { 
+		this.grilla = grilla;
+	}
+
+	public String getCodCancion() { 
+		return codCancion;
+	}
+
+
+	public void setCodCancion(String codCancion) { 
+		this.codCancion = codCancion;
+	}
+ 
+	private class GrillaDiscos { 
+		private int fila; 
+		private int columna;
+
+		public void MostrarUbicacion() {
+			System.out.println("Fila: " + fila + ",Columna: "+ columna);
+		}
+		public void SetearUbicacion(String codCancion) {
+			grilla.fila= Integer.parseInt(codCancion.substring(0,2)); 
+			grilla.columna=Integer.parseInt(codCancion.substring(2,4));
+		}
+
+		public int getColumna() { 
+			return columna;
+		}
+		
+		public void setColumna(int columna) { 
+			this.columna = columna;
+		}
+		
+		public int getFila() { 
+			return fila;
+		}
+		public void setFila(int fila) { 
+			this.fila = fila;
+		}
+
+	}
+}
