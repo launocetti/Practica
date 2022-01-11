@@ -1,0 +1,153 @@
+public class Ejecusion {
+
+	public static void main(String[] args) throws Exception {
+		Delicatesen<Vinos> deliVinos = new Delicatesen<Vinos>(3);
+		
+		Vinos v1 = new Vinos("los arboles", "1");
+		Vinos v2 = new Vinos("Dada", "2");
+		Vinos v3 = new Vinos("Norton", "3");
+		
+		deliVinos.add(v1);
+		deliVinos.add(v2);
+		deliVinos.add(v3);
+		
+		for(Vinos vino: deliVinos) {
+			System.out.println("Vino de Bodega: " + vino.getBodega() + " Marca: " + vino.getMarca());
+		}
+		
+		Delicatesen<Embutidos> deliEmbutidos = new Delicatesen<Embutidos>(3);
+		Delicatesen<Especias> deliEspecias = new Delicatesen<Especias>(5);
+		
+	}
+}
+
+____________________
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class Delicatesen <T> implements Iterable<T>{
+	private ArrayList<T> lista =  new ArrayList<T>();
+	private int tope;
+
+	
+
+	public Delicatesen(int tope) {
+		super();
+		this.tope = tope;
+	}
+
+	public ArrayList<T> getLista() {
+		return lista;
+	}
+
+	public void setLista(ArrayList<T> lista) {
+		this.lista = lista;
+	}
+
+	public int getTope() {
+		return tope;
+	}
+
+	public void setTope(int tope) {
+		this.tope = tope;
+	}
+	
+	//metodo para agregar objetos al arraylist
+	
+	public void add(T delicias) throws Exception {
+		
+		if (lista.size()<tope) {
+		lista.add(delicias);
+		} else {
+			throw new Exception("se supero el tope");
+		}
+		
+	}
+	
+	@Override
+	public Iterator<T> iterator() {
+		
+		return lista.iterator();
+	}
+
+}
+______________________
+
+public class Embutidos {
+	private String nombre;
+	private String marca;
+	
+	
+	
+	public Embutidos(String nombre, String marca) {
+		super();
+		this.nombre = nombre;
+		this.marca = marca;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getMarca() {
+		return marca;
+	}
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+}
+____________________
+
+public class Especias {
+	private String nombre;
+	private int cantidad;
+	
+	public Especias(String nombre, int cantidad) {
+		super();
+		this.nombre = nombre;
+		this.cantidad = cantidad;
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public int getCantidad() {
+		return cantidad;
+	}
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
+}
+__________________
+
+public class Vinos {
+	private String marca;
+	private String bodega;
+	
+	
+	
+	public Vinos(String marca, String bodega) {
+		super();
+		this.marca = marca;
+		this.bodega = bodega;
+	}
+	
+	public String getMarca() {
+		return marca;
+	}
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+	public String getBodega() {
+		return bodega;
+	}
+	public void setBodega(String bodega) {
+		this.bodega = bodega;
+	}
+}
